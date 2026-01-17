@@ -3,138 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predictor Access</title>
+    <title>Aviator System Access</title>
     <style>
-        /* --- PREDICTOR.AI STYLE THEME (Dark Blue & Cyan) --- */
+        /* --- RED & DARK THEME STYLES --- */
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #02040a; /* Deep dark blue/black */
+            background-color: #050000;
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-image: radial-gradient(circle at top center, #0f172a 0%, #02040a 60%);
+            background-image: radial-gradient(circle at center, #200000 0%, #000000 70%);
         }
 
         .container {
-            width: 360px;
-            padding: 35px;
-            background: #0b1120; /* Dark Card Background */
-            border-radius: 16px;
-            border: 1px solid #1e293b;
-            box-shadow: 0 0 40px rgba(0, 229, 255, 0.05);
+            width: 380px;
+            padding: 40px 30px;
+            background: #0f0505;
+            border-radius: 12px;
+            border: 1px solid #3b0e0e;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.15);
             text-align: center;
         }
 
-        .logo-area { margin-bottom: 30px; }
-        
+        .logo-area { margin-bottom: 35px; }
         .logo-icon { 
-            font-size: 45px; 
-            color: #00E5FF; /* Cyan Accent */
-            margin-bottom: 10px; 
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+            font-size: 50px; color: #ff3333; margin-bottom: 15px; 
+            text-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
         }
 
-        h2 { 
-            margin: 0; 
-            font-size: 24px; 
-            font-weight: 700; 
-            color: #fff; 
-            letter-spacing: 1px;
-            font-family: sans-serif;
-        }
+        h2 { margin: 0; font-size: 24px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        p.subtitle { color: #884444; font-size: 12px; margin-top: 5px; letter-spacing: 1px; }
 
-        .subtitle {
-            color: #00ff88; /* Green "Online" text style */
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
-
-        .input-group { margin-bottom: 20px; text-align: left; }
-        
-        label {
-            display: block; font-size: 11px; color: #64748b;
-            margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-
-        input {
+        /* GOOGLE LOGIN BUTTON */
+        button.google-btn {
             width: 100%; padding: 15px;
-            background-color: #0f172a; 
-            border: 1px solid #334155;
-            border-radius: 8px; color: #e2e8f0; font-size: 14px;
-            box-sizing: border-box; outline: none;
-            transition: all 0.3s;
-        }
-
-        input:focus { 
-            border-color: #00E5FF; 
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
-            background-color: #131c31;
-        }
-
-        button.login-btn {
-            width: 100%; padding: 15px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* Dark button */
-            border: 1px solid #334155;
-            color: #00E5FF; /* Cyan Text */
-            border-radius: 8px;
+            background: #fff; color: #000;
+            border: none; border-radius: 8px;
             font-size: 14px; font-weight: 700; cursor: pointer;
-            margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;
+            margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 12px;
             transition: all 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
+        button.google-btn:hover { background: #f0f0f0; transform: translateY(-2px); }
+        button.google-btn:active { transform: translateY(0); }
 
-        button.login-btn:hover { 
-            border-color: #00E5FF;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-            color: #fff;
-        }
+        #statusMsg { margin-top: 25px; font-size: 13px; min-height: 20px; font-weight: bold; }
 
-        #statusMsg { margin-top: 20px; font-size: 13px; min-height: 20px; font-weight: 500; }
-
-        /* --- UPDATED PURCHASE SECTION --- */
+        /* PURCHASE BOX */
         .purchase-box {
             margin-top: 30px;
-            padding: 20px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px dashed #334155;
-            border-radius: 12px;
+            padding: 15px;
+            background: rgba(255, 0, 0, 0.05);
+            border: 1px dashed #ff3333;
+            border-radius: 8px;
         }
 
         .purchase-title {
-            color: #94a3b8; font-size: 11px; font-weight: 700;
-            margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;
+            color: #ff3333; font-size: 14px; font-weight: bold;
+            margin-bottom: 5px; text-transform: uppercase;
         }
 
-        .price-tag {
-            font-size: 20px; color: #fff; font-weight: 700; margin-bottom: 5px;
-        }
-        
-        .price-sub {
-            font-size: 12px; color: #00E5FF; margin-bottom: 15px;
+        .purchase-text {
+            font-size: 12px; color: #ccaaaa; margin-bottom: 10px; line-height: 1.4;
         }
 
         .whatsapp-btn {
-            display: flex; align-items: center; justify-content: center;
+            display: inline-flex; align-items: center; justify-content: center;
             background-color: #25D366; 
-            color: #000;
-            text-decoration: none; padding: 12px;
-            border-radius: 8px; font-size: 13px; font-weight: 800;
-            transition: transform 0.2s, background 0.2s;
-            text-transform: uppercase;
+            color: white;
+            text-decoration: none; padding: 10px 15px;
+            border-radius: 5px; font-size: 13px; font-weight: bold;
+            transition: background 0.3s;
+            width: 90%;
         }
-
-        .whatsapp-btn:hover { background-color: #1ebc57; transform: translateY(-2px); }
+        .whatsapp-btn:hover { background-color: #1ebc57; }
 
         .footer {
-            margin-top: 25px; font-size: 10px; color: #334155;
-            border-top: 1px solid #1e293b; padding-top: 15px;
-            letter-spacing: 1px;
+            margin-top: 30px; font-size: 10px; color: #552222;
+            border-top: 1px solid #2b0a0a; padding-top: 15px;
         }
     </style>
 </head>
@@ -143,46 +92,40 @@
 <div class="container">
     <div class="logo-area">
         <div class="logo-icon">❖</div> 
-        <h2>PREDICTOR.AI</h2>
-        <div class="subtitle">● SYSTEM ONLINE</div>
+        <h2>System Login</h2>
+        <p class="subtitle">SECURE ACCESS GATEWAY</p>
     </div>
 
-    <div class="input-group">
-        <label>Access ID (Email)</label>
-        <input type="email" id="email" placeholder="user@access.com">
-    </div>
+    <button class="google-btn" onclick="loginWithGoogle()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20" height="20">
+        Sign in with Google
+    </button>
 
-    <div class="input-group">
-        <label>Security Key (Password)</label>
-        <input type="password" id="password" placeholder="••••••••">
-    </div>
-
-    <button class="login-btn" onclick="login()">Initialize System</button>
     <p id="statusMsg"></p>
 
     <div class="purchase-box">
-        <div class="purchase-title">Access Restricted</div>
-        <div class="price-tag">LKR 5000/=</div>
-        <div class="price-sub">Pay 50% (Half) to get instant access</div>
-        
-        <a href="https://wa.me/94716344483?text=I%20want%20to%20pay%20half%20for%20access" target="_blank" class="whatsapp-btn">
-            Get Key via WhatsApp
+        <div class="purchase-title">Activation Required</div>
+        <div class="purchase-text">
+            Lifetime Access Key: <strong>LKR 5000/=</strong><br>
+            Pay 50% to activate instant access.
+        </div>
+        <a href="https://wa.me/94716344483" target="_blank" class="whatsapp-btn">
+            WhatsApp: +94 71 634 4483
         </a>
     </div>
 
     <div class="footer">
-        SERVER LATENCY: 32 MS • V4.2.0-PRO
+        SERVER LATENCY: 32 MS • LIVE SYNC
     </div>
 </div>
 
 <script type="module">
-  // 1. IMPORT FIREBASE SDK v12.8.0
+  // 1. IMPORT FIREBASE
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
   import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
 
-  // 2. YOUR CONFIGURATION (aviator-buget)
+  // 2. CONFIGURATION
   const firebaseConfig = {
     apiKey: "AIzaSyDjlO86QiBbiEr-DHawKzcx8NMAnz0rsfE",
     authDomain: "aviator-buget.firebaseapp.com",
@@ -194,10 +137,11 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app); 
   const auth = getAuth(app);
   const db = getFirestore(app);
+  const googleProvider = new GoogleAuthProvider();
 
+  // 3. DEVICE ID HELPER
   function getDeviceId() {
       let id = localStorage.getItem('device_id');
       if (!id) {
@@ -207,40 +151,46 @@
       return id;
   }
 
-  window.login = async () => {
-      const email = document.getElementById('email').value;
-      const pass = document.getElementById('password').value;
+  // 4. MAIN LOGIN FUNCTION
+  window.loginWithGoogle = async () => {
       const msg = document.getElementById('statusMsg');
       const deviceId = getDeviceId();
 
-      msg.innerText = "CONNECTING TO SERVER...";
-      msg.style.color = "#00E5FF";
+      msg.innerText = "AUTHENTICATING WITH GOOGLE...";
+      msg.style.color = "#ff3333";
 
       try {
-          const userCred = await signInWithEmailAndPassword(auth, email, pass);
-          const user = userCred.user;
+          // A. Google Popup
+          const result = await signInWithPopup(auth, googleProvider);
+          const user = result.user;
 
-          msg.innerText = "VERIFYING DEVICE SIGNATURE...";
+          msg.innerText = "VERIFYING DEVICE PERMISSION...";
 
+          // B. Check Database
           const deviceRef = doc(db, "device_whitelist", deviceId);
           const deviceSnap = await getDoc(deviceRef);
 
           if (deviceSnap.exists()) {
               const data = deviceSnap.data();
+              
               if (data.status === 'approved') {
+                  // SUCCESS
                   msg.innerText = "ACCESS GRANTED";
                   msg.style.color = "#00ff88"; 
-                  setTimeout(() => { window.location.href = "dashboard.html"; }, 800);
+                  setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
               } else if (data.status === 'rejected') {
+                  // BANNED
                   await signOut(auth);
-                  msg.innerText = "ACCESS DENIED: DEVICE BLACKLISTED";
-                  msg.style.color = "#ff3333";
+                  msg.innerText = "ACCESS DENIED: DEVICE BANNED";
+                  msg.style.color = "#ff0000";
               } else {
+                  // PENDING
                   await signOut(auth);
-                  msg.innerText = "DEVICE PENDING APPROVAL";
-                  msg.style.color = "#ffaa00"; 
+                  msg.innerText = "DEVICE PENDING APPROVAL (CONTACT ADMIN)";
+                  msg.style.color = "#ffaa00";
               }
           } else {
+              // C. NEW DEVICE -> Add to DB
               await setDoc(deviceRef, {
                   uid: user.uid,
                   email: user.email,
@@ -248,15 +198,16 @@
                   status: 'pending',
                   requestDate: new Date().toISOString()
               });
+              
               await signOut(auth);
-              msg.innerText = "NEW DEVICE REGISTERED: PENDING APPROVAL";
-              msg.style.color = "#00E5FF";
+              msg.innerText = "NEW DEVICE REGISTERED. PLEASE CONTACT ADMIN.";
+              msg.style.color = "#ff3333";
           }
 
       } catch (error) {
           console.error(error);
-          msg.innerText = "LOGIN FAILED: " + error.message;
-          msg.style.color = "#ff3333";
+          msg.innerText = "Login Failed: " + error.message;
+          msg.style.color = "#ff0000";
       }
   }
 </script>
