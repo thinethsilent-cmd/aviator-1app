@@ -4,213 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aviator System Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- RED & DARK THEME STYLES --- */
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #050000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-image: radial-gradient(circle at center, #200000 0%, #000000 70%);
+        /* Custom Glow Animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(6, 182, 212, 0.5); }
         }
-
-        .container {
-            width: 380px;
-            padding: 40px 30px;
-            background: #0f0505;
-            border-radius: 12px;
-            border: 1px solid #3b0e0e;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.15);
-            text-align: center;
-        }
-
-        .logo-area { margin-bottom: 35px; }
-        .logo-icon { 
-            font-size: 50px; color: #ff3333; margin-bottom: 15px; 
-            text-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
-        }
-
-        h2 { margin: 0; font-size: 24px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
-        p.subtitle { color: #884444; font-size: 12px; margin-top: 5px; letter-spacing: 1px; }
-
-        /* GOOGLE LOGIN BUTTON */
-        button.google-btn {
-            width: 100%; padding: 15px;
-            background: #fff; color: #000;
-            border: none; border-radius: 8px;
-            font-size: 14px; font-weight: 700; cursor: pointer;
-            margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 12px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        button.google-btn:hover { background: #f0f0f0; transform: translateY(-2px); }
-        button.google-btn:active { transform: translateY(0); }
-
-        #statusMsg { margin-top: 25px; font-size: 13px; min-height: 20px; font-weight: bold; }
-
-        /* PURCHASE BOX */
-        .purchase-box {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(255, 0, 0, 0.05);
-            border: 1px dashed #ff3333;
-            border-radius: 8px;
-        }
-
-        .purchase-title {
-            color: #ff3333; font-size: 14px; font-weight: bold;
-            margin-bottom: 5px; text-transform: uppercase;
-        }
-
-        .purchase-text {
-            font-size: 12px; color: #ccaaaa; margin-bottom: 10px; line-height: 1.4;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            background-color: #25D366; 
-            color: white;
-            text-decoration: none; padding: 10px 15px;
-            border-radius: 5px; font-size: 13px; font-weight: bold;
-            transition: background 0.3s;
-            width: 90%;
-        }
-        .whatsapp-btn:hover { background-color: #1ebc57; }
-
-        .footer {
-            margin-top: 30px; font-size: 10px; color: #552222;
-            border-top: 1px solid #2b0a0a; padding-top: 15px;
-        }
+        .glow-effect { animation: pulse-glow 3s infinite; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 flex items-center justify-center min-h-screen text-white font-sans selection:bg-cyan-500 selection:text-black">
 
-<div class="container">
-    <div class="logo-area">
-        <div class="logo-icon">❖</div> 
-        <h2>System Login</h2>
-        <p class="subtitle">SECURE ACCESS GATEWAY</p>
-    </div>
+    <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center relative overflow-hidden">
+        
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-cyan-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20"></div>
 
-    <button class="google-btn" onclick="loginWithGoogle()">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20" height="20">
-        Sign in with Google
-    </button>
-
-    <p id="statusMsg"></p>
-
-    <div class="purchase-box">
-        <div class="purchase-title">Activation Required</div>
-        <div class="purchase-text">
-            Lifetime Access Key: <strong>LKR 5000/=</strong><br>
-            Pay 50% to activate instant access.
+        <div class="mb-8 relative z-10">
+            <div class="text-5xl text-cyan-400 mb-2 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">❖</div>
+            <h2 class="text-2xl font-bold tracking-widest text-white uppercase">System Login</h2>
+            <p class="text-xs text-slate-500 tracking-wider mt-1 font-semibold">SECURE ACCESS GATEWAY</p>
         </div>
-        <a href="https://wa.me/94716344483" target="_blank" class="whatsapp-btn">
-            WhatsApp: +94 71 634 4483
-        </a>
+
+        <button onclick="loginWithGoogle()" 
+            class="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-200 transform hover:-translate-y-1 shadow-lg hover:shadow-cyan-500/20 group">
+            
+            <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Sign in with Google
+        </button>
+
+        <p id="statusMsg" class="mt-6 text-sm font-bold min-h-[20px] text-slate-400"></p>
+
+        <div class="mt-8 p-4 bg-cyan-950/30 border border-cyan-500/30 rounded-xl glow-effect">
+            <h3 class="text-cyan-400 text-sm font-bold uppercase mb-1">Activation Required</h3>
+            <p class="text-slate-400 text-xs mb-3 leading-relaxed">
+                Lifetime Access Key: <strong class="text-white">LKR 5000/=</strong><br>
+                Pay 50% to activate instant access.
+            </p>
+            <a href="https://wa.me/94716344483" target="_blank" 
+               class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors w-full">
+               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+               WhatsApp: +94 71 634 4483
+            </a>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-slate-800 text-[10px] text-slate-600 tracking-widest">
+            SERVER LATENCY: 32 MS • LIVE SYNC
+        </div>
     </div>
 
-    <div class="footer">
-        SERVER LATENCY: 32 MS • LIVE SYNC
-    </div>
-</div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+      import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+      import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 
-<script type="module">
-  // 1. IMPORT FIREBASE
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-  import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+      // YOUR CONFIGURATION
+      const firebaseConfig = {
+        apiKey: "AIzaSyDjlO86QiBbiEr-DHawKzcx8NMAnz0rsfE",
+        authDomain: "aviator-buget.firebaseapp.com",
+        projectId: "aviator-buget",
+        storageBucket: "aviator-buget.firebasestorage.app",
+        messagingSenderId: "148875365800",
+        appId: "1:148875365800:web:a9d7a09c1732870e94a19d",
+        measurementId: "G-3258PXYNZD"
+      };
 
-  // 2. CONFIGURATION
-  const firebaseConfig = {
-    apiKey: "AIzaSyDjlO86QiBbiEr-DHawKzcx8NMAnz0rsfE",
-    authDomain: "aviator-buget.firebaseapp.com",
-    projectId: "aviator-buget",
-    storageBucket: "aviator-buget.firebasestorage.app",
-    messagingSenderId: "148875365800",
-    appId: "1:148875365800:web:a9d7a09c1732870e94a19d",
-    measurementId: "G-3258PXYNZD"
-  };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const googleProvider = new GoogleAuthProvider();
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const googleProvider = new GoogleAuthProvider();
-
-  // 3. DEVICE ID HELPER
-  function getDeviceId() {
-      let id = localStorage.getItem('device_id');
-      if (!id) {
-          id = crypto.randomUUID(); 
-          localStorage.setItem('device_id', id);
-      }
-      return id;
-  }
-
-  // 4. MAIN LOGIN FUNCTION
-  window.loginWithGoogle = async () => {
-      const msg = document.getElementById('statusMsg');
-      const deviceId = getDeviceId();
-
-      msg.innerText = "AUTHENTICATING WITH GOOGLE...";
-      msg.style.color = "#ff3333";
-
-      try {
-          // A. Google Popup
-          const result = await signInWithPopup(auth, googleProvider);
-          const user = result.user;
-
-          msg.innerText = "VERIFYING DEVICE PERMISSION...";
-
-          // B. Check Database
-          const deviceRef = doc(db, "device_whitelist", deviceId);
-          const deviceSnap = await getDoc(deviceRef);
-
-          if (deviceSnap.exists()) {
-              const data = deviceSnap.data();
-              
-              if (data.status === 'approved') {
-                  // SUCCESS
-                  msg.innerText = "ACCESS GRANTED";
-                  msg.style.color = "#00ff88"; 
-                  setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
-              } else if (data.status === 'rejected') {
-                  // BANNED
-                  await signOut(auth);
-                  msg.innerText = "ACCESS DENIED: DEVICE BANNED";
-                  msg.style.color = "#ff0000";
-              } else {
-                  // PENDING
-                  await signOut(auth);
-                  msg.innerText = "DEVICE PENDING APPROVAL (CONTACT ADMIN)";
-                  msg.style.color = "#ffaa00";
-              }
-          } else {
-              // C. NEW DEVICE -> Add to DB
-              await setDoc(deviceRef, {
-                  uid: user.uid,
-                  email: user.email,
-                  deviceName: navigator.userAgent, 
-                  status: 'pending',
-                  requestDate: new Date().toISOString()
-              });
-              
-              await signOut(auth);
-              msg.innerText = "NEW DEVICE REGISTERED. PLEASE CONTACT ADMIN.";
-              msg.style.color = "#ff3333";
+      function getDeviceId() {
+          let id = localStorage.getItem('device_id');
+          if (!id) {
+              id = crypto.randomUUID(); 
+              localStorage.setItem('device_id', id);
           }
-
-      } catch (error) {
-          console.error(error);
-          msg.innerText = "Login Failed: " + error.message;
-          msg.style.color = "#ff0000";
+          return id;
       }
-  }
-</script>
 
+      window.loginWithGoogle = async () => {
+          const msg = document.getElementById('statusMsg');
+          const deviceId = getDeviceId();
+
+          msg.innerText = "AUTHENTICATING...";
+          msg.className = "mt-6 text-sm font-bold min-h-[20px] text-cyan-400 animate-pulse";
+
+          try {
+              const result = await signInWithPopup(auth, googleProvider);
+              const user = result.user;
+
+              msg.innerText = "VERIFYING DEVICE...";
+              msg.className = "mt-6 text-sm font-bold min-h-[20px] text-yellow-400";
+
+              const deviceRef = doc(db, "device_whitelist", deviceId);
+              const deviceSnap = await getDoc(deviceRef);
+
+              if (deviceSnap.exists()) {
+                  const data = deviceSnap.data();
+                  if (data.status === 'approved') {
+                      msg.innerText = "ACCESS GRANTED";
+                      msg.className = "mt-6 text-sm font-bold min-h-[20px] text-green-400";
+                      setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
+                  } else if (data.status === 'rejected') {
+                      await signOut(auth);
+                      msg.innerText = "DEVICE BANNED";
+                      msg.className = "mt-6 text-sm font-bold min-h-[20px] text-red-500";
+                  } else {
+                      await signOut(auth);
+                      msg.innerText = "PENDING APPROVAL (CONTACT ADMIN)";
+                      msg.className = "mt-6 text-sm font-bold min-h-[20px] text-orange-400";
+                  }
+              } else {
+                  await setDoc(deviceRef, {
+                      uid: user.uid,
+                      email: user.email,
+                      deviceName: navigator.userAgent, 
+                      status: 'pending',
+                      requestDate: new Date().toISOString()
+                  });
+                  await signOut(auth);
+                  msg.innerText = "NEW DEVICE: PLEASE CONTACT ADMIN";
+                  msg.className = "mt-6 text-sm font-bold min-h-[20px] text-cyan-400";
+              }
+
+          } catch (error) {
+              console.error(error);
+              msg.innerText = "Login Failed";
+              msg.className = "mt-6 text-sm font-bold min-h-[20px] text-red-500";
+          }
+      }
+    </script>
 </body>
 </html>
